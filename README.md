@@ -1,4 +1,4 @@
-#React boilerplate
+# React boilerplate
 
 This is a work in progress for a quick start react boilerplate. The boilerplate includes:
 
@@ -10,7 +10,7 @@ This is a work in progress for a quick start react boilerplate. The boilerplate 
 - SASS
 - ES Lint (with AirBnB configuration) [http://eslint.org/](http://eslint.org/)
 
-##Roadmap for the boilerplate:
+## Roadmap for the boilerplate:
 
 - Immutable JS [https://facebook.github.io/immutable-js/](https://facebook.github.io/immutable-js/)
 - React router v4 [https://reacttraining.com/react-router/](https://reacttraining.com/react-router/)
