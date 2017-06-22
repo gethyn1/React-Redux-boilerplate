@@ -9,6 +9,7 @@ This is a work in progress for a quick start react boilerplate. The boilerplate 
 - Hot reloading
 - SASS
 - ES Lint (with AirBnB configuration) [http://eslint.org/](http://eslint.org/)
+- JSON server for mock API [https://github.com/typicode/json-server](https://github.com/typicode/json-server)
 
 ## Roadmap for the boilerplate:
 
