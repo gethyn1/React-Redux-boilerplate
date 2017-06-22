@@ -2,18 +2,18 @@
 
 import { connect } from 'react-redux'
 
-import { addComment } from '../actions/comments'
+import { commentsAddComment } from '../actions/comments'
 
 import CommentForm from '../components/CommentForm'
 
-const mapStateToProps = state => ({
+const mapStateToProps = () => ({
   comment: null,
 })
 
 const mapDispatchToProps = dispatch => ({
-    onSubmitComment: (comment) => {
-      dispatch(addComment(comment))
-    }
+  onSubmitComment: (comment) => {
+    dispatch(commentsAddComment(comment))
+  },
 })
 
 const AddComment = connect(

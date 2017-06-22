@@ -14,7 +14,7 @@ const Comment = ({ comment, deleteComment }: Props) => {
 
   return (
     <div>
-      {comment.text}<br />
+      <strong>@{comment.user}</strong> {comment.text}<br />
       <button onClick={onClick}>Delete this comment</button>
     </div>
   )

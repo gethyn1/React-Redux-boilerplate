@@ -4,35 +4,60 @@ import React from 'react'
 import shortid from 'shortid'
 
 type Props = {
-  comment: Object,
   onSubmitComment: Function,
 }
 
+type State = {
+  text: ?string,
+  user: ?string,
+}
+
 class CommentForm extends React.Component {
+
   constructor(props: Props) {
     super(props)
 
+    this.state = {
+      text: '',
+      user: '',
+    }
+
+    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleSubmit(e: Event) {
-    e.preventDefault()
+  state: State
+  props: Props
+  handleChange: Function
+  handleSubmit: Function
+
+  handleChange(event: Event & { target: HTMLInputElement }) {
+    const name = event.target.name
+    this.setState({
+      [name]: event.target.value,
+    })
+  }
+
+  handleSubmit(event: Event) {
+    event.preventDefault()
 
     this.props.onSubmitComment({
       id: shortid.generate(),
-      text: this.refs.comment.value,
-      user: this.refs.author.value,
+      text: this.state.text,
+      user: this.state.user,
     })
 
-    this.refs.commentForm.reset()
+    this.setState({
+      text: '',
+      user: '',
+    })
   }
-
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} ref="commentForm">
-        <input type="text" ref="author" placeholder="Name" /><br />
-        <textarea ref="comment" placeholder ="Comment"></textarea><br />
+      <form onSubmit={this.handleSubmit}>
+        <input onChange={this.handleChange} name="user" type="text" placeholder="Name" value={this.state.user} /><br />
+        <textarea onChange={this.handleChange} name="text" placeholder="Comment" value={this.state.text} /><br />
         <button type="submit">Post comment</button>
       </form>
     )

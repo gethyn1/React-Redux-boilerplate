@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux'
 
-import comments from './comments'
+import { commentsHasErrored, commentsIsLoading, comments } from './comments'
 
-const rootReducer = combineReducers({ comments })
+const rootReducer = combineReducers({
+  commentsHasErrored,
+  commentsIsLoading,
+  comments,
+})
 
 export default rootReducer

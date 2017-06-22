@@ -1,16 +1,24 @@
 import { connect } from 'react-redux'
 
-import { deleteComment } from '../actions/comments'
+import {
+  commentsFetchData,
+  commentsRemoveComment,
+} from '../actions/comments'
 
 import CommentList from '../components/CommentList'
 
 const mapStateToProps = state => ({
   comments: state.comments,
+  hasErrored: state.commentsHasErrored,
+  isLoading: state.isLoading,
 })
 
 const mapDispatchToProps = dispatch => ({
+  fetchData: (url) => {
+    dispatch(commentsFetchData(url))
+  },
   onDeleteComment: (id) => {
-    dispatch(deleteComment(id))
+    dispatch(commentsRemoveComment(id))
   },
 })
 
