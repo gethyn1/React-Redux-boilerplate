@@ -1,7 +1,9 @@
 // @flow
 
 import React from 'react'
+
 import Comment from './Comment'
+import * as CONFIG from '../config'
 
 type Props = {
   comments: Array<Object>,
@@ -19,7 +21,7 @@ class CommentList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchData('http://localhost:3000/comments')
+    this.props.fetchData(CONFIG.API_URL_COMMENTS)
   }
 
   props: Props

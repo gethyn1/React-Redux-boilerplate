@@ -10,9 +10,10 @@ This is a work in progress for a quick start react boilerplate. The boilerplate 
 - SASS
 - ES Lint (with AirBnB configuration) [http://eslint.org/](http://eslint.org/)
 - JSON server for mock API [https://github.com/typicode/json-server](https://github.com/typicode/json-server)
+- Testing with Jest [https://facebook.github.io/jest/](https://facebook.github.io/jest/)
 
 ## Roadmap for the boilerplate:
 
 - Immutable JS [https://facebook.github.io/immutable-js/](https://facebook.github.io/immutable-js/)
 - React router v4 [https://reacttraining.com/react-router/](https://reacttraining.com/react-router/)
-- Testing with Jest [https://facebook.github.io/jest/](https://facebook.github.io/jest/)
+- Develop development and production config
