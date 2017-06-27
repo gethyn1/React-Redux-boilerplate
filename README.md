@@ -7,11 +7,12 @@ This is a work in progress for a quick start react boilerplate. The boilerplate 
 - Flow type checking [https://flow.org](https://flow.org)
 - Redux and Redux dev tools [http://redux.js.org/](http://redux.js.org/)
 - React router v4 [https://reacttraining.com/react-router/](https://reacttraining.com/react-router/)
-- React hot reloader [https://github.com/gaearon/react-hot-loader](https://github.com/gaearon/react-hot-loader) 
+- React hot reloader [https://github.com/gaearon/react-hot-loader](https://github.com/gaearon/react-hot-loader)
 - SASS
 - ES Lint (with AirBnB configuration) [http://eslint.org/](http://eslint.org/)
 - JSON server for mock API [https://github.com/typicode/json-server](https://github.com/typicode/json-server)
 - Testing with Jest [https://facebook.github.io/jest/](https://facebook.github.io/jest/)
+- Husky git hooks [https://github.com/typicode/husky](https://github.com/typicode/husky)
 
 ## Roadmap for the boilerplate:
 
