@@ -1,6 +1,6 @@
 # React boilerplate
 
-This is a work in progress for a quick start react boilerplate. The boilerplate includes:
+This is a work in progress for a quick start client side react boilerplate. The boilerplate includes:
 
 - React (ES6)
 - Webpack 2.0 [https://webpack.js.org/](https://webpack.js.org/)
