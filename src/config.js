@@ -1,4 +1,5 @@
 // @flow
+export const WDS_PORT = 8080
 
 export const APP_NAME = 'React boilerplate'
 

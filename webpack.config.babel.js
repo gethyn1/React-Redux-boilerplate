@@ -1,41 +1,35 @@
-const path = require('path');
+import path from 'path'
+import webpack from 'webpack'
 
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import { WDS_PORT, isProd } from './src/config'
+
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 	template: './index.html',
 	filename: 'index.html',
-	inject: 'body'
+	inject: 'body',
 });
 
-const config = {
+export default {
   entry: [
 		'react-hot-loader/patch',
-		'webpack-dev-server/client?http://localhost:8080',
-		'webpack/hot/only-dev-server',
 		'./index.jsx'
 	],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-		publicPath: '/'
+		publicPath: '/',
     // necessary for HMR to know where to load the hot update chunks
   },
 	context: path.resolve(__dirname, 'src'),
-	devtool: 'inline-source-map',
+	devtool: isProd ? false : 'source-map',
 	devServer: {
-      hot: true,
-      // enable HMR on the server
-
-      contentBase: path.resolve(__dirname, 'dist'),
-      // match the output path
-
-      publicPath: '/',
-      // match the output `publicPath`
-
-      //fallback to root for other urls
-      historyApiFallback: true
+		port: WDS_PORT,
+    hot: true,
+    contentBase: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -53,22 +47,16 @@ const config = {
             loader: "css-loader"
         }, {
             loader: "sass-loader"
-        }
+        },
     	]}
 		]
   },
 	plugins: [
 		HtmlWebpackPluginConfig,
-
 		new webpack.HotModuleReplacementPlugin(),
-    // enable HMR globally
-
     new webpack.NamedModulesPlugin(),
-    // prints more readable module names in the browser console on HMR updates
 	],
 	resolve: {
-		extensions: ['.js', '.jsx']
+		extensions: ['.js', '.jsx'],
 	}
-};
-
-module.exports = config;
+}
