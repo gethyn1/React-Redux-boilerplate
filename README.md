@@ -1,5 +1,4 @@
 [![Build Status](https://img.shields.io/travis/gethyn1/React-Redux-boilerplate.svg?style=flat-square)](https://travis-ci.org/gethyn1/React-Redux-boilerplate)
-[![Coverage Status](https://img.shields.io/coveralls/gethyn1/React-Redux-boilerplate.svg?style=flat-square)](https://coveralls.io/github/gethyn1/React-Redux-boilerplate?branch=master)
 
 # React boilerplate
 
