@@ -4,6 +4,7 @@ import React from 'react'
 import shortid from 'shortid'
 
 type Props = {
+  postId: String,
   onSubmitComment: Function,
 }
 
@@ -43,6 +44,7 @@ class CommentForm extends React.Component {
 
     this.props.onSubmitComment({
       id: shortid.generate(),
+      postId: this.props.postId,
       text: this.state.text,
       user: this.state.user,
     })

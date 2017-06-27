@@ -1,20 +1,42 @@
 const path = require('path');
 
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-	template: './src/index.html',
+	template: './index.html',
 	filename: 'index.html',
 	inject: 'body'
 });
 
 const config = {
-  entry: './src/index.jsx',
+  entry: [
+		'react-hot-loader/patch',
+		'webpack-dev-server/client?http://localhost:8080',
+		'webpack/hot/only-dev-server',
+		'./index.jsx'
+	],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+		publicPath: '/'
+    // necessary for HMR to know where to load the hot update chunks
   },
-	devtool: 'cheap-eval-source-map',
+	context: path.resolve(__dirname, 'src'),
+	devtool: 'inline-source-map',
+	devServer: {
+      hot: true,
+      // enable HMR on the server
+
+      contentBase: path.resolve(__dirname, 'dist'),
+      // match the output path
+
+      publicPath: '/',
+      // match the output `publicPath`
+
+      //fallback to root for other urls
+      historyApiFallback: true
+  },
   module: {
     rules: [
       {
@@ -36,7 +58,13 @@ const config = {
 		]
   },
 	plugins: [
-		HtmlWebpackPluginConfig
+		HtmlWebpackPluginConfig,
+
+		new webpack.HotModuleReplacementPlugin(),
+    // enable HMR globally
+
+    new webpack.NamedModulesPlugin(),
+    // prints more readable module names in the browser console on HMR updates
 	],
 	resolve: {
 		extensions: ['.js', '.jsx']

@@ -1,5 +1,7 @@
 // @flow
 
+import { API_URL_COMMENTS } from '../config'
+
 export const addComment = (comment: Object) => ({
   type: 'ADD_COMMENT',
   comment,
@@ -30,7 +32,9 @@ export const commentsAddComment = (comment: Object) => ({
   comment,
 })
 
-export const commentsFetchData = (url: RequestInfo) => (dispatch: Function) => {
+export const commentsFetchData = (id: String) => (dispatch: Function) => {
+  // flow-disable-next-line
+  const url = `${API_URL_COMMENTS}?postId=${id}`
   dispatch(commentsIsLoading(true))
 
   return fetch(url, { method: 'GET' })

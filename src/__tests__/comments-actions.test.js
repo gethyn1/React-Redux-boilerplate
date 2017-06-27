@@ -9,7 +9,7 @@ import {
   commentsFetchData,
 } from '../actions/comments'
 
-import * as CONFIG from '../config'
+import { API_URL_COMMENTS } from '../config'
 
 const mockStore = configureMockStore([thunkMiddleware])
 
@@ -18,6 +18,7 @@ const mockJSON = {
   "comments": [
     {
       "id": "asde5e",
+      "postId": "asefff",
       "text":"Totally need to try this.",
       "user": "heavymetaladam"
     }
@@ -25,15 +26,17 @@ const mockJSON = {
 }
 /* eslint-enable */
 
+const mockCommentForPostUrl = `${API_URL_COMMENTS}?postId=asefff`
+
 afterEach(() => {
   fetchMock.restore()
 })
 
 test('Fetch comments from API: success', () => {
-  fetchMock.get(CONFIG.API_URL_COMMENTS, mockJSON)
+  fetchMock.get(mockCommentForPostUrl, mockJSON)
 
   const store = mockStore()
-  return store.dispatch(commentsFetchData(CONFIG.API_URL_COMMENTS))
+  return store.dispatch(commentsFetchData('asefff'))
     .then(() => {
       expect(store.getActions()).toEqual([
         commentsIsLoading(true),
@@ -44,10 +47,10 @@ test('Fetch comments from API: success', () => {
 })
 
 test('Fetch comments from API: 404', () => {
-  fetchMock.get(CONFIG.API_URL_COMMENTS, 404)
+  fetchMock.get(mockCommentForPostUrl, 404)
 
   const store = mockStore()
-  return store.dispatch(commentsFetchData(CONFIG.API_URL_COMMENTS))
+  return store.dispatch(commentsFetchData('asefff'))
     .then(() => {
       expect(store.getActions()).toEqual([
         commentsIsLoading(true),

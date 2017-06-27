@@ -3,14 +3,12 @@
 import React from 'react'
 
 import Comment from './Comment'
-import * as CONFIG from '../config'
 
 type Props = {
   comments: Array<Object>,
   onDeleteComment: Function,
-  fetchData: Function,
-  hasErrored: boolean,
-  isLoading: boolean,
+  commentsHasErrored: boolean,
+  commentsIsLoading: boolean,
 }
 
 class CommentList extends React.Component {
@@ -18,10 +16,6 @@ class CommentList extends React.Component {
     super(props)
 
     this.deleteComment = this.deleteComment.bind(this)
-  }
-
-  componentDidMount() {
-    this.props.fetchData(CONFIG.API_URL_COMMENTS)
   }
 
   props: Props
@@ -36,11 +30,11 @@ class CommentList extends React.Component {
       <Comment key={comment.id} comment={comment} deleteComment={this.deleteComment} />
     ))
 
-    if (this.props.hasErrored) {
+    if (this.props.commentsHasErrored) {
       return <p>Sorry, there was an error loading the comments</p>
     }
 
-    if (this.props.isLoading) {
+    if (this.props.commentsIsLoading) {
       return <p>Loading ...</p>
     }
 

@@ -1,12 +1,21 @@
-import React from 'react'
+// @flow
 
-import AddComment from '../containers/AddComment'
-import CommentsForPost from '../containers/CommentsForPost'
+import React from 'react'
+import { Switch } from 'react-router'
+import { Route } from 'react-router-dom'
+
+import TopBar from './TopBar'
+
+import AllPosts from '../containers/AllPosts'
+import SinglePost from '../containers/SinglePost'
 
 const App = () => (
   <div>
-    <AddComment />
-    <CommentsForPost />
+    <TopBar />
+    <Switch>
+      <Route exact path={'/'} render={() => <AllPosts />} />
+      <Route path={'/post/:postId'} render={() => <SinglePost />} />
+    </Switch>
   </div>
 )
 
