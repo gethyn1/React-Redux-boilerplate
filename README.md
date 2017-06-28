@@ -16,6 +16,9 @@ This is a work in progress for a quick start client side react boilerplate. The 
 - Testing with Jest [https://facebook.github.io/jest/](https://facebook.github.io/jest/)
 - Husky git hooks [https://github.com/typicode/husky](https://github.com/typicode/husky)
 
-## Roadmap for the boilerplate:
+### Roadmap for the boilerplate:
 
 - Immutable JS [https://facebook.github.io/immutable-js/](https://facebook.github.io/immutable-js/)
+- A consistent way to handle CSS modules with a maintainable SASS architecture
+- React Helmet [https://github.com/nfl/react-helmet](https://github.com/nfl/react-helmet)
+- React snapshot [https://www.npmjs.com/package/react-snapshot](https://www.npmjs.com/package/react-snapshot)

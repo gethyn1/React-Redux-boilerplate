@@ -19,8 +19,8 @@ class PostsList extends React.Component {
 
   render() {
     const posts = this.props.posts.map(post => (
-      <li key={post.id}>
-        <Link to={`/post/${post.id}`}>{post.title}</Link>
+      <li key={post.id} className="c-posts__item">
+        <Link to={`/post/${post.id}`} className="c-posts__link">{post.title}</Link>
       </li>
     ))
 
@@ -34,7 +34,7 @@ class PostsList extends React.Component {
 
     return (
       <div>
-        <ul>
+        <ul className="o-list-bare c-posts">
           {posts}
         </ul>
       </div>

@@ -5,11 +5,12 @@ import { withRouter } from 'react-router'
 
 import {
   postsFetchPost,
+  postsUpdatePost,
 } from '../actions/posts'
 
 import {
   commentsFetchData,
-  commentsRemoveComment,
+  commentsDeleteComment,
   commentsAddComment,
 } from '../actions/comments'
 
@@ -19,21 +20,28 @@ const mapStateToProps = (state, ownProps) => ({
   postId: ownProps.match.params.postId,
   post: state.currentPost,
   postsHasErrored: state.postsHasErrored,
+  postsHasErroredOnUpdate: state.postsHasErroredOnUpdate,
   postsIsLoading: state.postsIsLoading,
+  postsIsSavingPost: state.postsIsSavingPost,
   comments: state.comments,
   commentsHasErrored: state.commentsHasErrored,
   commentsIsLoading: state.commentsIsLoading,
+  commentsIsSaving: state.commentsIsSaving,
+  commentsHasErroredOnSave: state.commentsHasErroredOnSave,
 })
 
 const mapDispatchToProps = (dispatch: Function) => ({
   fetchPost: (id: String) => {
     dispatch(postsFetchPost(id))
   },
+  onSubmitPost: (post: Object) => {
+    dispatch(postsUpdatePost(post))
+  },
   fetchComments: (id: String) => {
     dispatch(commentsFetchData(id))
   },
   onDeleteComment: (id: String) => {
-    dispatch(commentsRemoveComment(id))
+    dispatch(commentsDeleteComment(id))
   },
   onSubmitComment: (comment: Object) => {
     dispatch(commentsAddComment(comment))

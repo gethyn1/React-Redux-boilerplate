@@ -1,5 +1,6 @@
 [options]
 suppress_comment= \\(.\\|\n\\)*\\flow-disable-next-line
+module.name_mapper='\(redux\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js.flow'
 module.name_mapper='\(react-redux\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js.flow'
 module.name_mapper='\(shortid\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js.flow'
 module.name_mapper='\(react-router\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js.flow'

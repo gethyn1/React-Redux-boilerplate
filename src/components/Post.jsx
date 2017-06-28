@@ -8,17 +8,27 @@ import CommentForm from './CommentForm'
 type Props = {
   post: Object,
   postsIsLoading: boolean,
+  postsIsSavingPost: boolean,
   postsHasErrored: boolean,
+  postsHasErroredOnUpdate: boolean,
   fetchPost: Function,
+  onSubmitPost: Function,
   fetchComments: Function,
   /* eslint-disable react/no-unused-prop-types */
   comments: Array<Object>,
   onDeleteComment: Function,
   commentsHasErrored: boolean,
   commentsIsLoading: boolean,
+  commentsIsSaving: boolean,
+  commentsHasErroredOnSave: boolean,
   postId: String,
   onSubmitComment: Function,
   /* eslint-enable react/no-unused-prop-types */
+}
+
+type State = {
+  editMode: boolean,
+  postTitle: ?string,
 }
 
 /*
@@ -27,6 +37,21 @@ type Props = {
 const isNewPostLoaded = (post, postId) => !post || post.id !== postId
 
 class Post extends React.Component {
+  constructor(props: Props) {
+    super(props)
+
+    this.state = {
+      editMode: false,
+      postTitle: this.props.post ? this.props.post.title : '',
+    }
+
+    this.toggleEditMode = this.toggleEditMode.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  state: State
+
   componentDidMount() {
     if (isNewPostLoaded(this.props.post, this.props.postId)) {
       this.props.fetchPost(this.props.postId)
@@ -34,9 +59,72 @@ class Post extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps: Object) {
+    if (nextProps.post) {
+      this.setState({
+        postTitle: nextProps.post.title,
+      })
+    }
+  }
+
   props: Props
+  toggleEditMode: Function
+  handleChange: Function
+  handleSubmit: Function
+
+  toggleEditMode() {
+    this.setState({
+      editMode: this.state.editMode !== true,
+    })
+  }
+
+  handleChange(event: Event & { target: HTMLInputElement }) {
+    const name = event.target.name
+    this.setState({
+      [name]: event.target.value,
+    })
+  }
+
+  handleSubmit(event: Event) {
+    event.preventDefault()
+    this.props.onSubmitPost({
+      id: this.props.postId,
+      title: this.state.postTitle,
+    })
+
+    this.setState({
+      editMode: false,
+    })
+  }
+
+  renderPostView: Function
+
+  renderPostView() {
+    if (this.state.editMode) {
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.handleChange} name="postTitle" type="text" placeholder="Title" value={this.state.postTitle} />
+          <button type="submit" className="c-btn">Save</button>
+        </form>
+      )
+    }
+
+    return (
+      <h1>{this.props.post.title}</h1>
+    )
+  }
 
   render() {
+    let updateStatus = null
+
+    if (this.props.postsIsSavingPost) {
+      updateStatus = <p>Saving post ...</p>
+    }
+
+    if (this.props.postsHasErroredOnUpdate) {
+      updateStatus = <p>There was an error saving the post</p>
+    }
+
     if (this.props.postsHasErrored) {
       return <p>There has been an error</p>
     }
@@ -47,7 +135,9 @@ class Post extends React.Component {
 
     return (
       <div>
-        <h1>{this.props.post.title}</h1>
+        <p><button onClick={this.toggleEditMode} className="c-btn-link">{this.state.editMode ? 'Done editing' : 'Edit post'}</button></p>
+        {this.renderPostView()}
+        {updateStatus}
         {this.props.post.content}
         <CommentList {...this.props} />
         <CommentForm {...this.props} />

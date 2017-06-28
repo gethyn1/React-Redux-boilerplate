@@ -14,8 +14,7 @@ const Comment = ({ comment, deleteComment }: Props) => {
 
   return (
     <div>
-      <strong>@{comment.user}</strong> {comment.text}<br />
-      <button onClick={onClick}>Delete this comment</button>
+      <strong>@{comment.user}</strong> {comment.text} - <button onClick={onClick} className="c-btn-link">X delete</button>
     </div>
   )
 }

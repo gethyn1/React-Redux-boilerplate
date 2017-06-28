@@ -6,6 +6,8 @@ import shortid from 'shortid'
 type Props = {
   postId: String,
   onSubmitComment: Function,
+  commentsIsSaving: boolean,
+  commentsHasErroredOnSave: boolean,
 }
 
 type State = {
@@ -56,11 +58,19 @@ class CommentForm extends React.Component {
   }
 
   render() {
+    if (this.props.commentsIsSaving) {
+      return <p>Saving comment ...</p>
+    }
+
+    if (this.props.commentsHasErroredOnSave) {
+      return <p>There was an error saving the comment</p>
+    }
+
     return (
       <form onSubmit={this.handleSubmit}>
         <input onChange={this.handleChange} name="user" type="text" placeholder="Name" value={this.state.user} /><br />
         <textarea onChange={this.handleChange} name="text" placeholder="Comment" value={this.state.text} /><br />
-        <button type="submit">Post comment</button>
+        <button type="submit" className="c-btn">Post comment</button>
       </form>
     )
   }

@@ -27,7 +27,9 @@ class CommentList extends React.Component {
 
   render() {
     const commentItems = this.props.comments.map(comment => (
-      <Comment key={comment.id} comment={comment} deleteComment={this.deleteComment} />
+      <li className="c-comments__item">
+        <Comment key={comment.id} comment={comment} deleteComment={this.deleteComment} />
+      </li>
     ))
 
     if (this.props.commentsHasErrored) {
@@ -41,7 +43,7 @@ class CommentList extends React.Component {
     return (
       <div>
         <h2>{this.props.comments.length} comments:</h2>
-        <ul>
+        <ul className="o-list-bare c-comments">
           {commentItems}
         </ul>
       </div>
