@@ -8,7 +8,7 @@
     "start": "yarn start:dev",
     "start:dev": "webpack-dev-server --progress",
     "start:json": "./node_modules/.bin/json-server --watch ./src/data/db.json",
-    "prod:build": "rimraf lib dist && babel src -d lib --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
+    "prod:build": "rimraf lib dist && babel src -d lib --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress && cp _redirects dist/",
     "lint": "eslint src --ext .js,.jsx",
     "test": "yarn lint && flow && jest --coverage",
     "precommit": "yarn test",
