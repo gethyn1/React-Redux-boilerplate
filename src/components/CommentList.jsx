@@ -3,6 +3,9 @@
 import React from 'react'
 
 import Comment from './Comment'
+import ListBare from './ListBare'
+
+import styles from '../styles/components/_CommentList.scss'
 
 type Props = {
   comments: Array<Object>,
@@ -45,17 +48,17 @@ class CommentList extends React.Component {
     }
 
     const commentItems = comments.map(comment => (
-      <li key={comment.id} className="c-comments__item">
+      <li key={comment.id} className={styles.item}>
         <Comment comment={comment} deleteComment={this.deleteComment} />
       </li>
     ))
 
     return (
       <div>
-        <h2>{comments.length} comments:</h2>
-        <ul className="o-list-bare c-comments">
+        <h3>{comments.length} comments:</h3>
+        <ListBare>
           {commentItems}
-        </ul>
+        </ListBare>
       </div>
     )
   }

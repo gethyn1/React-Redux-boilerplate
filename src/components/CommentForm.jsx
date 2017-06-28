@@ -3,6 +3,8 @@
 import React from 'react'
 import shortid from 'shortid'
 
+import Button from './Button'
+
 type Props = {
   postId: String,
   onSubmitComment: Function,
@@ -68,9 +70,13 @@ class CommentForm extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} name="user" type="text" placeholder="Name" value={this.state.user} /><br />
-        <textarea onChange={this.handleChange} name="text" placeholder="Comment" value={this.state.text} /><br />
-        <button type="submit" className="c-btn">Post comment</button>
+        <p>
+          <input onChange={this.handleChange} name="user" type="text" placeholder="Name" value={this.state.user} />
+        </p>
+        <p>
+          <textarea onChange={this.handleChange} name="text" placeholder="Comment" value={this.state.text} />
+        </p>
+        <Button text="Post that comment" type="submit" />
       </form>
     )
   }

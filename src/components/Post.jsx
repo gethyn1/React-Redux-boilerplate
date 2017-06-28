@@ -2,6 +2,7 @@
 
 import React from 'react'
 
+import Button from './Button'
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
 
@@ -103,14 +104,16 @@ class Post extends React.Component {
     if (this.state.editMode) {
       return (
         <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange} name="postTitle" type="text" placeholder="Title" value={this.state.postTitle} />
-          <button type="submit" className="c-btn">Save</button>
+          <p>
+            <input onChange={this.handleChange} name="postTitle" type="text" placeholder="Title" value={this.state.postTitle} />
+          </p>
+          <Button text="Save" type="submit" />
         </form>
       )
     }
 
     return (
-      <h1>{this.props.post.title}</h1>
+      <h2>{this.props.post.title}</h2>
     )
   }
 
@@ -138,7 +141,7 @@ class Post extends React.Component {
         <p><button onClick={this.toggleEditMode} className="c-btn-link">{this.state.editMode ? 'Done editing' : 'Edit post'}</button></p>
         {this.renderPostView()}
         {updateStatus}
-        {this.props.post.content}
+        <p>{this.props.post.content}</p>
         <CommentList {...this.props} />
         <CommentForm {...this.props} />
       </div>

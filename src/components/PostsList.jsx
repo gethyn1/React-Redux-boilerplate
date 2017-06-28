@@ -3,6 +3,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import ListBare from './ListBare'
+
+import styles from '../styles/components/_PostsList.scss'
+
 type Props = {
   posts: Array<Object>,
   fetchData: Function,
@@ -19,8 +23,8 @@ class PostsList extends React.Component {
 
   render() {
     const posts = this.props.posts.map(post => (
-      <li key={post.id} className="c-posts__item">
-        <Link to={`/post/${post.id}`} className="c-posts__link">{post.title}</Link>
+      <li key={post.id} className={styles.item}>
+        <Link to={`/post/${post.id}`} className={styles.link}>{post.title}</Link>
       </li>
     ))
 
@@ -34,9 +38,9 @@ class PostsList extends React.Component {
 
     return (
       <div>
-        <ul className="o-list-bare c-posts">
+        <ListBare>
           {posts}
-        </ul>
+        </ListBare>
       </div>
     )
   }

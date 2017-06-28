@@ -18,7 +18,7 @@ export default {
 	],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
 		publicPath: '/',
     // necessary for HMR to know where to load the hot update chunks
   },
@@ -40,15 +40,19 @@ export default {
 				test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/
 			},
 			{
-        test: /\.scss$/,
-        use: [{
-            loader: "style-loader"
-        }, {
-            loader: "css-loader"
-        }, {
-            loader: "sass-loader"
-        },
-    	]}
+        test: /\.(sass|scss)$/,
+        use: [
+            'style-loader',
+						{
+	            loader: 'css-loader',
+	            options: {
+								modules: true,
+								localIdentName: isProd ? false : '[name]__[local]___[hash:base64:5]',
+							},
+	          },
+            'sass-loader'
+    		]
+			},
 		]
   },
 	plugins: [
