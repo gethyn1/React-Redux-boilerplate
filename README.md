@@ -13,7 +13,7 @@ This is a work in progress for a quick start client side react boilerplate. The 
 - SASS
 - ES Lint (with AirBnB configuration) [http://eslint.org/](http://eslint.org/)
 - JSON server for mock API [https://github.com/typicode/json-server](https://github.com/typicode/json-server)
-- Testing with Jest [https://facebook.github.io/jest/](https://facebook.github.io/jest/)
+- Testing with Jest and Enzyme [https://facebook.github.io/jest/](https://facebook.github.io/jest/), [https://github.com/airbnb/enzyme](https://github.com/airbnb/enzyme)
 - Husky git hooks [https://github.com/typicode/husky](https://github.com/typicode/husky)
 
 ### Roadmap for the boilerplate:

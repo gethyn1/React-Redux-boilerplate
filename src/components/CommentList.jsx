@@ -26,23 +26,33 @@ class CommentList extends React.Component {
   }
 
   render() {
-    const commentItems = this.props.comments.map(comment => (
-      <li className="c-comments__item">
-        <Comment key={comment.id} comment={comment} deleteComment={this.deleteComment} />
-      </li>
-    ))
+    const {
+      commentsHasErrored,
+      commentsIsLoading,
+      comments,
+    } = this.props
 
-    if (this.props.commentsHasErrored) {
+    if (commentsHasErrored) {
       return <p>Sorry, there was an error loading the comments</p>
     }
 
-    if (this.props.commentsIsLoading) {
+    if (commentsIsLoading) {
       return <p>Loading ...</p>
     }
 
+    if (!comments || !comments.length) {
+      return <div><h2>No comments yet</h2></div>
+    }
+
+    const commentItems = comments.map(comment => (
+      <li key={comment.id} className="c-comments__item">
+        <Comment comment={comment} deleteComment={this.deleteComment} />
+      </li>
+    ))
+
     return (
       <div>
-        <h2>{this.props.comments.length} comments:</h2>
+        <h2>{comments.length} comments:</h2>
         <ul className="o-list-bare c-comments">
           {commentItems}
         </ul>
