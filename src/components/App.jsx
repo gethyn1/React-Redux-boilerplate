@@ -6,15 +6,15 @@ import { Route } from 'react-router-dom'
 
 import TopBar from './TopBar'
 
-import AllPosts from '../containers/AllPosts'
-import SinglePost from '../containers/SinglePost'
+import HomePage from './pages/HomePage'
+import PostPage from './pages/PostPage'
 
 const App = () => (
   <div>
     <TopBar />
     <Switch>
-      <Route exact path={'/'} render={() => <AllPosts />} />
-      <Route path={'/post/:postId'} render={() => <SinglePost />} />
+      <Route exact path={'/'} render={() => <HomePage />} />
+      <Route path={'/post/:postId'} render={() => <PostPage />} />
     </Switch>
   </div>
 )

@@ -1,6 +1,9 @@
 // @flow
 
 import React from 'react'
+import { Helmet } from 'react-helmet'
+
+import { APP_NAME } from '../config'
 
 import Button from './Button'
 import CommentList from './CommentList'
@@ -99,6 +102,23 @@ class Post extends React.Component {
   }
 
   renderPostView: Function
+  renderPostMeta: Function
+
+  renderPostMeta() {
+    if (this.props.post) {
+      return (
+        <Helmet
+          title={`${APP_NAME}: ${this.props.post.title}`}
+          meta={[
+            { name: 'description', content: 'A react boilerplate application' },
+            { property: 'og:title', content: `${APP_NAME}: ${this.props.post.title}` },
+          ]}
+        />
+      )
+    }
+
+    return null
+  }
 
   renderPostView() {
     if (this.state.editMode) {
@@ -118,30 +138,40 @@ class Post extends React.Component {
   }
 
   render() {
+    const {
+      postsIsSavingPost,
+      postsHasErroredOnUpdate,
+      postsHasErrored,
+      postsIsLoading,
+      postId,
+      post,
+    } = this.props
+
     let updateStatus = null
 
-    if (this.props.postsIsSavingPost) {
+    if (postsIsSavingPost) {
       updateStatus = <p>Saving post ...</p>
     }
 
-    if (this.props.postsHasErroredOnUpdate) {
+    if (postsHasErroredOnUpdate) {
       updateStatus = <p>There was an error saving the post</p>
     }
 
-    if (this.props.postsHasErrored) {
+    if (postsHasErrored) {
       return <p>There has been an error</p>
     }
 
-    if (this.props.postsIsLoading || isNewPostLoaded(this.props.post, this.props.postId)) {
+    if (postsIsLoading || isNewPostLoaded(post, postId)) {
       return <p>Loading post ...</p>
     }
 
     return (
       <div>
+        {this.renderPostMeta()}
         <p><button onClick={this.toggleEditMode} className="c-btn-link">{this.state.editMode ? 'Done editing' : 'Edit post'}</button></p>
         {this.renderPostView()}
         {updateStatus}
-        <p>{this.props.post.content}</p>
+        <p>{post.content}</p>
         <CommentList {...this.props} />
         <CommentForm {...this.props} />
       </div>
