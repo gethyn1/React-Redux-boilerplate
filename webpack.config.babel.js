@@ -1,5 +1,6 @@
 import path from 'path'
 import webpack from 'webpack'
+import SpriteLoaderPlugin from 'svg-sprite-loader/plugin'
 
 import { WDS_PORT, isProd } from './src/config'
 
@@ -50,8 +51,30 @@ export default {
 								localIdentName: isProd ? false : '[name]__[local]___[hash:base64:5]',
 							},
 	          },
+						'postcss-loader',
             'sass-loader'
     		]
+			},
+			{
+	      test: /\.svg$/,
+	      include: path.join(__dirname, 'src/images/icons'),
+	      loaders: [
+	        'svg-sprite-loader?' + JSON.stringify({
+	          name: '[name].[hash]',
+	          prefixize: true
+	        }),
+	        'svgo-loader?' + JSON.stringify({
+	          plugins: [
+	            { removeTitle: true },
+	            { convertPathData: false },
+	            { removeUselessStrokeAndFill: true }
+	          ]
+	        })
+	      ]
+	    },
+			{
+				test: /\.(jpe?g|gif|png|woff|ttf|wav|mp3)$/,
+				loader: 'file-loader',
 			},
 		]
   },
@@ -59,6 +82,7 @@ export default {
 		HtmlWebpackPluginConfig,
 		new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
+		new SpriteLoaderPlugin(),
 	],
 	resolve: {
 		extensions: ['.js', '.jsx'],

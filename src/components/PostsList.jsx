@@ -1,5 +1,9 @@
 // @flow
 
+/*
+  Note: I think this can be rewritten with default props
+*/
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 
