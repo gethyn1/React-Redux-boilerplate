@@ -14,6 +14,8 @@ import App from './components/App'
 import sass from './styles/style.scss'
 
 // Redux
+import * as posts from './reducers/posts'
+import * as comments from './reducers/comments'
 import rootReducer from './reducers/index'
 
 /* eslint-disable no-underscore-dangle */
@@ -21,8 +23,8 @@ const composeEnhancers = (isProd ? null : window.__REDUX_DEVTOOLS_EXTENSION_COMP
 /* eslint-enable no-underscore-dangle */
 
 const defaultState = {
-  posts: [],
-  comments: [],
+  posts: posts.initialState,
+  comments: comments.initialState,
 }
 
 const store = createStore(

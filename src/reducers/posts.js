@@ -1,56 +1,54 @@
 // @flow
 
-export const postsIsLoading = (state: any = false, action: Object) => {
-  switch (action.type) {
-    case 'POSTS_IS_LOADING':
-      return action.isLoading
-    default:
-      return state
-  }
+import {
+  POSTS_IS_LOADING,
+  POSTS_IS_SAVING_POST,
+  POSTS_HAS_ERRORED,
+  POSTS_HAS_ERRORED_ON_UPDATE,
+  POSTS_FETCH_DATA_SUCCESS,
+  POSTS_FETCH_POST_SUCCESS,
+  POSTS_UPDATE_POST_SUCCESS,
+} from '../actions/posts'
+
+export const initialState = {
+  isLoading: false,
+  isSaving: false,
+  hasErrored: false,
+  hasErroredOnUpdate: false,
+  posts: [],
+  post: {},
 }
 
-export const postsIsSavingPost = (state: any = false, action: Object) => {
+export const posts = (state: Object = initialState, action: { type: string, payload: any }) => {
   switch (action.type) {
-    case 'POSTS_IS_SAVING_POST':
-      return action.isSaving
-    default:
-      return state
-  }
-}
-
-export const postsHasErrored = (state: any = false, action: Object) => {
-  switch (action.type) {
-    case 'POSTS_HAS_ERRORED':
-      return action.hasErrored
-    default:
-      return state
-  }
-}
-
-export const postsHasErroredOnUpdate = (state: any = false, action: Object) => {
-  switch (action.type) {
-    case 'POSTS_HAS_ERRORED_ON_UPDATE':
-      return action.hasErroredOnUpdate
-    default:
-      return state
-  }
-}
-
-export const posts = (state: any = [], action: Object) => {
-  switch (action.type) {
-    case 'POSTS_FETCH_DATA_SUCCESS':
-      return action.posts
-    default:
-      return state
-  }
-}
-
-export const currentPost = (state: any = null, action: Object) => {
-  switch (action.type) {
-    case 'POSTS_FETCH_POST_SUCCESS':
-      return action.post
-    case 'POSTS_FETCH_UPDATE_POST_SUCCESS':
-      return action.post
+    case POSTS_IS_LOADING:
+      return Object.assign({}, state, {
+        isLoading: action.payload,
+      })
+    case POSTS_IS_SAVING_POST:
+      return Object.assign({}, state, {
+        isSaving: action.payload,
+      })
+    case POSTS_HAS_ERRORED:
+      return Object.assign({}, state, {
+        hasErrored: action.payload,
+      })
+    case POSTS_HAS_ERRORED_ON_UPDATE:
+      return Object.assign({}, state, {
+        hasErroredOnUpdate: action.payload,
+      })
+    case POSTS_FETCH_DATA_SUCCESS:
+      return Object.assign({}, state, {
+        posts: action.payload,
+      })
+    case POSTS_FETCH_POST_SUCCESS:
+      return Object.assign({}, state, {
+        post: action.payload,
+      })
+    case POSTS_UPDATE_POST_SUCCESS:
+      return Object.assign({}, state, {
+        post: action.payload,
+      })
     default:
       return state
   }

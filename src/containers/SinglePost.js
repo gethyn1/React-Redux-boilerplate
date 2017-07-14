@@ -18,16 +18,16 @@ import Post from '../components/Post'
 
 const mapStateToProps = (state, ownProps) => ({
   postId: ownProps.match.params.postId,
-  post: state.currentPost,
-  postsHasErrored: state.postsHasErrored,
-  postsHasErroredOnUpdate: state.postsHasErroredOnUpdate,
-  postsIsLoading: state.postsIsLoading,
-  postsIsSavingPost: state.postsIsSavingPost,
-  comments: state.comments,
-  commentsHasErrored: state.commentsHasErrored,
-  commentsIsLoading: state.commentsIsLoading,
-  commentsIsSaving: state.commentsIsSaving,
-  commentsHasErroredOnSave: state.commentsHasErroredOnSave,
+  post: state.posts.post,
+  postsHasErrored: state.posts.hasErrored,
+  postsHasErroredOnUpdate: state.posts.hasErroredOnUpdate,
+  postsIsLoading: state.posts.isLoading,
+  postsIsSavingPost: state.posts.isSavingPost,
+  comments: state.comments.comments,
+  commentsHasErrored: state.comments.hasErrored,
+  commentsIsLoading: state.comments.isLoading,
+  commentsIsSaving: state.comments.isSaving,
+  commentsHasErroredOnSave: state.comments.hasErroredOnSave,
 })
 
 const mapDispatchToProps = (dispatch: Function) => ({

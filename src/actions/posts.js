@@ -2,39 +2,47 @@
 
 import { API_URL_POSTS } from '../config'
 
-export const postsIsLoading = (bool: boolean) => ({
-  type: 'POSTS_IS_LOADING',
-  isLoading: bool,
+export const POSTS_IS_LOADING = 'POSTS_IS_LOADING'
+export const POSTS_IS_SAVING_POST = 'POSTS_IS_SAVING_POST'
+export const POSTS_HAS_ERRORED = 'POSTS_HAS_ERRORED'
+export const POSTS_HAS_ERRORED_ON_UPDATE = 'POSTS_HAS_ERRORED_ON_UPDATE'
+export const POSTS_FETCH_DATA_SUCCESS = 'POSTS_FETCH_DATA_SUCCESS'
+export const POSTS_FETCH_POST_SUCCESS = 'POSTS_FETCH_POST_SUCCESS'
+export const POSTS_UPDATE_POST_SUCCESS = 'POSTS_UPDATE_POST_SUCCESS'
+
+export const postsIsLoading = (payload: boolean) => ({
+  type: POSTS_IS_LOADING,
+  payload,
 })
 
-export const postsIsSavingPost = (bool: boolean) => ({
-  type: 'POSTS_IS_SAVING_POST',
-  isSaving: bool,
+export const postsIsSavingPost = (payload: boolean) => ({
+  type: POSTS_IS_SAVING_POST,
+  payload,
 })
 
-export const postsHasErrored = (bool: boolean) => ({
-  type: 'POSTS_HAS_ERRORED',
-  hasErrored: bool,
+export const postsHasErrored = (payload: boolean) => ({
+  type: POSTS_HAS_ERRORED,
+  payload,
 })
 
-export const postsHasErroredOnUpdate = (bool: boolean) => ({
-  type: 'POSTS_HAS_ERRORED_ON_UPDATE',
-  hasErroredOnUpdate: bool,
+export const postsHasErroredOnUpdate = (payload: boolean) => ({
+  type: POSTS_HAS_ERRORED_ON_UPDATE,
+  payload,
 })
 
-export const postsFetchDataSuccess = (posts: Array<Object>) => ({
-  type: 'POSTS_FETCH_DATA_SUCCESS',
-  posts,
+export const postsFetchDataSuccess = (payload: Array<Object>) => ({
+  type: POSTS_FETCH_DATA_SUCCESS,
+  payload,
 })
 
-export const postsFetchPostSuccess = (post: Object) => ({
-  type: 'POSTS_FETCH_POST_SUCCESS',
-  post,
+export const postsFetchPostSuccess = (payload: Object) => ({
+  type: POSTS_FETCH_POST_SUCCESS,
+  payload,
 })
 
-export const postsUpdatePostSuccess = (post: Object) => ({
-  type: 'POSTS_FETCH_UPDATE_POST_SUCCESS',
-  post,
+export const postsUpdatePostSuccess = (payload: Object) => ({
+  type: POSTS_UPDATE_POST_SUCCESS,
+  payload,
 })
 
 export const postsFetchData = () => (dispatch: Function) => {

@@ -2,44 +2,53 @@
 
 import { API_URL_COMMENTS } from '../config'
 
-export const commentsHasErrored = (bool: boolean) => ({
-  type: 'COMMENTS_HAS_ERRORED',
-  hasErrored: bool,
+export const COMMENTS_HAS_ERRORED = 'COMMENTS_HAS_ERRORED'
+export const COMMENTS_HAS_ERRORED_ON_SAVE = 'COMMENTS_HAS_ERRORED_ON_SAVE'
+export const COMMENTS_HAS_ERRORED_ON_DELETE = 'COMMENTS_HAS_ERRORED_ON_DELETE'
+export const COMMENTS_IS_LOADING = 'COMMENTS_IS_LOADING'
+export const COMMENTS_IS_SAVING = 'COMMENTS_IS_SAVING'
+export const COMMENTS_FETCH_DATA_SUCCESS = 'COMMENTS_FETCH_DATA_SUCCESS'
+export const COMMENTS_DELETE_COMMENT_SUCCESS = 'COMMENTS_DELETE_COMMENT_SUCCESS'
+export const COMMENTS_ADD_COMMENT_SUCCESS = 'COMMENTS_ADD_COMMENT_SUCCESS'
+
+export const commentsHasErrored = (payload: boolean) => ({
+  type: COMMENTS_HAS_ERRORED,
+  payload,
 })
 
-export const commentsHasErroredOnSave = (bool: boolean) => ({
-  type: 'COMMENTS_HAS_ERRORED_ON_SAVE',
-  hasErrored: bool,
+export const commentsHasErroredOnSave = (payload: boolean) => ({
+  type: COMMENTS_HAS_ERRORED_ON_SAVE,
+  payload,
 })
 
-export const commentsHasErroredOnDelete = (bool: boolean) => ({
-  type: 'COMMENTS_HAS_ERRORED_ON_DELETE',
-  hasErrored: bool,
+export const commentsHasErroredOnDelete = (payload: boolean) => ({
+  type: COMMENTS_HAS_ERRORED_ON_DELETE,
+  payload,
 })
 
-export const commentsIsLoading = (bool: boolean) => ({
-  type: 'COMMENTS_IS_LOADING',
-  isLoading: bool,
+export const commentsIsLoading = (payload: boolean) => ({
+  type: COMMENTS_IS_LOADING,
+  payload,
 })
 
-export const commentsIsSaving = (bool: boolean) => ({
-  type: 'COMMENTS_IS_SAVING',
-  isSaving: bool,
+export const commentsIsSaving = (payload: boolean) => ({
+  type: COMMENTS_IS_SAVING,
+  payload,
 })
 
-export const commentsFetchDataSuccess = (comments: Array<Object>) => ({
-  type: 'COMMENTS_FETCH_DATA_SUCCESS',
-  comments,
+export const commentsFetchDataSuccess = (payload: Array<Object>) => ({
+  type: COMMENTS_FETCH_DATA_SUCCESS,
+  payload,
 })
 
-export const commentsDeleteCommentSuccess = (id: String) => ({
-  type: 'COMMENTS_DELETE_COMMENT_SUCCESS',
-  id,
+export const commentsDeleteCommentSuccess = (payload: String) => ({
+  type: COMMENTS_DELETE_COMMENT_SUCCESS,
+  payload,
 })
 
-export const commentsAddCommentSuccess = (comment: Object) => ({
-  type: 'COMMENTS_ADD_COMMENT_SUCCESS',
-  comment,
+export const commentsAddCommentSuccess = (payload: Object) => ({
+  type: COMMENTS_ADD_COMMENT_SUCCESS,
+  payload,
 })
 
 export const commentsDeleteComment = (id: String) => (dispatch: Function) => {

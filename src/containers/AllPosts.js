@@ -4,9 +4,9 @@ import { postsFetchData } from '../actions/posts'
 import PostsList from '../components/PostsList'
 
 const mapStateToProps = state => ({
-  posts: state.posts,
-  hasErrored: state.postsHasErrored,
-  isLoading: state.postsIsLoading,
+  posts: state.posts.posts,
+  hasErrored: state.posts.hasErrored,
+  isLoading: state.posts.isLoading,
 })
 
 const mapDispatchToProps = dispatch => ({
